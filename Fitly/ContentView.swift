@@ -23,7 +23,7 @@ struct ContentView: View {
                     
                     Image("home")
                         .resizable()
-                        .padding(.top, 80.0)
+                        .padding(.top, 79.0)
                         .frame(width: 115, height: 215)
                         .font(.system(size: 20, weight: .bold, design: .serif))
                     

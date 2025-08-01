@@ -1,6 +1,19 @@
 import SwiftUI
 
 struct Recipes: View {
+    
+    var favorites: [String]
+    var updateFavorites: (String, Bool) -> Void
+    
+    var isFavorite: Bool {
+        favorites.contains("Banana Bread")
+    }
+
+    var isFavorite1: Bool {
+        favorites.contains("Buddha Bowl")
+    }
+    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,6 +38,7 @@ struct Recipes: View {
                             .padding(.top, 40.0)
                             .frame(width: 200, height: 300)
                             .aspectRatio(contentMode: .fill)
+                        
 
                         NavigationLink(destination: BananaBread()) {
                             Text("Banana Bread Recipe")
@@ -33,7 +47,18 @@ struct Recipes: View {
                                 .bold()
                                 .font(.system(size: 20))
                         }
-                        .padding(.bottom, 40)
+
+                        
+                        Button(action: {
+                            updateFavorites("Banana Bread", !isFavorite)
+                        }) {
+                            HStack {
+                                Image(systemName: isFavorite ? "heart.fill" : "heart")
+                                    .foregroundColor(.pink)
+                                Text("Favorite")
+                                    .foregroundColor(.pink)
+                            }
+                        }
 
                         Image("buddha-bowl")
                             .resizable()
@@ -46,6 +71,17 @@ struct Recipes: View {
                             .multilineTextAlignment(.center)
                             .bold()
                             .font(.system(size: 20))
+                        
+                        Button(action: {
+                            updateFavorites("Buddha Bowl", !isFavorite1)
+                        }) {
+                            HStack {
+                                Image(systemName: isFavorite1 ? "heart.fill" : "heart")
+                                    .foregroundColor(.pink)
+                                Text("Favorite")
+                                    .foregroundColor(.pink)
+                            }
+                        }
 
                         
 
@@ -59,5 +95,5 @@ struct Recipes: View {
 }
 
 #Preview {
-    Recipes()
+    Recipes(favorites: [], updateFavorites: { _, _ in })
 }

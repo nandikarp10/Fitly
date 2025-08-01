@@ -1,6 +1,17 @@
 import SwiftUI
 
 struct workouts: View {
+    var favorites: [String]
+    var updateFavorites: (String, Bool) -> Void
+    
+    var isFavorite: Bool {
+        favorites.contains("6 Week Muscle Building Workout for Women")
+    }
+
+    var isFavorite1: Bool {
+        favorites.contains("15-Minute Core Conditioning Workout You Can Do Anywhere")
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -33,7 +44,16 @@ struct workouts: View {
                                 .bold()
                                 .font(.system(size: 20))
                         }
-                        .padding(.bottom, 40)
+                        Button(action: {
+                            updateFavorites("6 Week Muscle Building Workout for Women", !isFavorite)
+                        }) {
+                            HStack {
+                                Image(systemName: isFavorite ? "heart.fill" : "heart")
+                                    .foregroundColor(.pink)
+                                Text("Favorite")
+                                    .foregroundColor(.pink)
+                            }
+                        }
 
                         Image("men-workout")
                             .resizable()
@@ -46,8 +66,17 @@ struct workouts: View {
                             .multilineTextAlignment(.center)
                             .bold()
                             .font(.system(size: 20))
-
                         
+                        Button(action: {
+                            updateFavorites("15-Minute Core Conditioning Workout You Can Do Anywhere", !isFavorite1)
+                        }) {
+                            HStack {
+                                Image(systemName: isFavorite1 ? "heart.fill" : "heart")
+                                    .foregroundColor(.pink)
+                                Text("Favorite")
+                                    .foregroundColor(.pink)
+                            }
+                        }
 
                         Spacer()
                     }
@@ -59,5 +88,5 @@ struct workouts: View {
 }
 
 #Preview {
-    workouts()
+    workouts(favorites: [], updateFavorites: { _, _ in })
 }

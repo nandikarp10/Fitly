@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var favorites: [String] = []
     var body: some View {
         NavigationStack{
             ZStack{
@@ -40,18 +41,35 @@ struct ContentView: View {
                         .frame(width: 200.0, height: 190.0)
                     
                     
-                    NavigationLink(destination: Recipes()){
-                        Text("Recipes  ")
+                    NavigationLink(destination:
+                        Recipes(
+                            favorites: favorites,
+                            updateFavorites: { title, isAdding in
+                                if isAdding {
+                                    favorites.append(title)
+                                } else {
+                                    favorites.removeAll { $0 == title }
+                                }
+                            }
+                        )
+                    ) {
+                        Text(" Recipes  ")
                             .font(.system(size:40))
                             .foregroundColor(Color.red)
                             .background(Color(hue: 0.13, saturation: 0.117, brightness: 0.918))
-                            .cornerRadius(15)
                             .bold()
-                            .padding()
-                            .padding()
-                        
+                            .cornerRadius(15)
+                            .padding(30)
                     }
-                    NavigationLink(destination: workouts()){
+                    NavigationLink(destination: workouts(favorites: favorites, updateFavorites: { item, add in
+                        if add {
+                            if !favorites.contains(item) {
+                                favorites.append(item)
+                            }
+                        } else {
+                            favorites.removeAll { $0 == item }
+                        }
+                    })) {
                         Text(" Workouts  ")
                             .font(.system(size:40))
                             .foregroundColor(Color.red)
@@ -60,7 +78,7 @@ struct ContentView: View {
                             .cornerRadius(15)
                         
                     }
-                    NavigationLink(destination: favorites()){
+                    NavigationLink(destination: Favorites(favorites: favorites)){
                         Text(" Favorites  ")
                             .font(.system(size:40))
                             .foregroundColor(Color.red)

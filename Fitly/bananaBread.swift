@@ -25,8 +25,19 @@ struct BananaBread: View {
     • ¼ teaspoon baking soda
     """
     let bananaBreadText2 = """
-            
-            Preheat the oven to 350°F and brush a 9x5-inch loaf pan with olive oil. In a large bowl, combine the mashed bananas with the sugar, almond milk, olive oil, vanilla, and apple cider vinegar and whisk until combined. In a medium bowl combine the flours, baking powder, baking soda, salt, cinnamon, and nutmeg. Add the dry ingredients to the bowl with the wet ingredients and stir until just combined, then fold in the walnuts. Pour into the prepared pan and sprinkle with the chopped walnuts and oats. Bake for 42 to 50 minutes, or until a toothpick inserted in the middle comes out clean.
+            1. Preheat the oven to 350°F and brush a 9x5-inch loaf pan with olive oil.
+
+            2. In a large bowl, combine the mashed bananas with the sugar, almond milk, olive oil, vanilla, and apple cider vinegar and whisk until combined.
+
+            3. In a medium bowl, combine the flours, baking powder, baking soda, salt, cinnamon, and nutmeg.
+
+            4. Add the dry ingredients to the bowl with the wet ingredients and stir until just combined, then fold in the walnuts.
+
+            5. Pour the batter into the prepared pan and sprinkle with the chopped walnuts and oats.
+
+            6. Bake for 42 to 50 minutes, or until a toothpick inserted in the middle comes out clean.
+
+            7. Enjoy!
         """
     
     var body: some View {
@@ -41,12 +52,13 @@ struct BananaBread: View {
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .bold()
-
+                    
                     Image("banana-bread")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 400, height: 300)
                         .clipped()
+                    
                     Text("                                    Ingredients:")
                         .foregroundColor(Color.red)
                         .multilineTextAlignment(.center)
@@ -59,13 +71,20 @@ struct BananaBread: View {
                         .foregroundColor(Color.red)
                         .multilineTextAlignment(.center)
                         .bold()
-
+                    
                     Text(bananaBreadText2)
                         .font(.body)
                         .foregroundColor(.black)
                         .padding()
-                    Text("Many people spend around $3–$6 per slice when buying banana bread at coffee shops or bakeries—often packed with 350–550 calories, added sugar, refined flour, and fats—whereas making a healthier homemade version (using whole grain or nut flours, ripe bananas, minimal added sweetener, applesauce/oil substitutes, and portion control) typically cuts the calories to 150–250 per slice, reduces refined carbs and sugar by half or more, boosts fiber and nutrients, and allows full control over ingredients for a significantly healthier treat.")
+                    
+                    Text ("Making this homemade banana bread costs about $4.50–$5.00 per whole loaf, compared to $8–$12+ for a bakery loaf. That’s less than $0.50 per slice versus $3–$6, saving you money while enjoying a healthier treat!")
                         .multilineTextAlignment(.center)
+                        .font(.system(size:20))
+                        .foregroundColor(Color.red)
+                        .background(Color(hue: 0.525, saturation: 0.133, brightness: 0.953))
+                        .bold()
+                        .cornerRadius(10)
+                        
                 }
                 .padding()
             }
